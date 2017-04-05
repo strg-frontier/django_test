@@ -1,10 +1,9 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render,redirect
 from django.utils.html import mark_safe
 from .models import Poll
 from .models import Choice
-from django.shortcuts import Http404
-from django.shortcuts import get_object_or_404
+from django.shortcuts import Http404,get_object_or_404
+from .forms import MyForm
 
 # Create your views here.
 
@@ -40,4 +39,15 @@ def results(request,pk):
   obj = get_object_or_404(Poll,pk=pk)
   return render(request, 'polls/results.html',{
     'poll':obj,
+  })
+
+def form_test(request):
+  if request.method == "POST":
+    form = MyForm(data=request.POST)
+    if form.is_valid():
+      pass
+  else:
+    form = MyForm()
+  return render(request, 'polls/form.html',{
+    'form': form,
   })
