@@ -1,0 +1,48 @@
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+</head>
+<body>
+
+  <canvas id="stage"></canvas>
+
+  <script type="text/javascript">
+  var mydata = {
+  labels: [
+	{% for data in datas %}
+	"{{ data.date }}",
+	{% endfor %}
+	],
+  datasets: [
+    {
+      label: '数量',
+      hoverBackgroundColor: "rgba(255,99,132,0.3)",
+      data: [
+	{% for data in datas %}	
+	{{ data.weight }},
+	{% endfor %}
+	],
+    }
+  ]
+};
+
+//「オプション設定」
+var options = {
+  title: {    
+    display: true,
+    text: 'サンプルチャート'
+  }
+};
+
+var canvas = document.getElementById('stage');
+var chart = new Chart(canvas, {
+
+  type: 'line',  //グラフの種類
+  data: mydata,  //表示するデータ
+  options: options  //オプション設定
+
+});
+  </script>
+</body>
+</html>
+
