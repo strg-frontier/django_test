@@ -12,7 +12,7 @@
   <tr>
     <td>{{ poll.question }}</td>
     <td>{{ poll.pub_date }}</td>
-    <td><a href="{% url 'poll_detail' poll.pk %}">詳細</a></td>
+    <td><a href="{% url 'polls:detail' poll.pk %}">詳細</a></td>
   </tr>
   {% endfor %}
  </table>

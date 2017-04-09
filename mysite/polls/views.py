@@ -33,7 +33,7 @@ def vote(request, pk):
   else:
     selected_choice.votes += 1
     selected_choice.save()
-    return redirect('poll_results',pk)
+    return redirect('polls:results',pk)
 
 def results(request,pk):
   obj = get_object_or_404(Poll,pk=pk)
