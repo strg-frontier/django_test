@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^polls/',include('polls.urls',namespace='polls')),
     url(r'^cms/',include('cms.urls',namespace='cms')),
+    url(r'^weight/',include('weight.urls',namespace='weight')),
 ]

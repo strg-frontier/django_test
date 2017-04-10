@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'polls',
     'cms',
+    'weight',
 ]
 
 MIDDLEWARE = [
