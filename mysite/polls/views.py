@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.utils.html import mark_safe
+from django.contrib.auth.decorators import login_required
 from .models import Poll
 from .models import Choice
 from django.shortcuts import Http404,get_object_or_404
@@ -7,6 +8,7 @@ from .forms import MyForm
 
 # Create your views here.
 
+@login_required
 def index(request):
   return render(request, 'polls/index.html',{
 	'polls': Poll.objects.all(),
