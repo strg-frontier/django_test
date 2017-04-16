@@ -3,7 +3,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 </head>
 <body>
-
+  <form>
+    <input type="date" id="date_from" name="example2" value="2017-04-23">
+    <input type="date" id="date_to" name="example2" value="2017-04-30">
+    <input type="button" id="btn" value="送信" />
+  </form>
   <canvas id="stage"></canvas>
 
   <script type="text/javascript">
@@ -42,6 +46,43 @@ var chart = new Chart(canvas, {
   options: options  //オプション設定
 
 });
+document.addEventListener('DOMContentLoaded',function() {
+  document.getElementById('btn').addEventListener('click',function(){
+  var nextdata= {
+  labels: [],
+  datasets: [
+    {
+      label: '数量',
+      hoverBackgroundColor: "rgba(255,99,132,0.3)",
+      data: [],
+    }
+  ]
+};
+    var date_from= document.getElementById('date_from');
+    date_from = new Date(date_from.value)
+    console.log("from:"+date_from)
+    var date_to = document.getElementById('date_to');
+    date_to = new Date(date_to.value)
+    console.log("to:"+date_to)
+    for (var i=0;i<mydata.labels.length;i++){
+	var tmp_date = new Date(mydata.labels[i]);
+	if(tmp_date >= date_from){
+	    if(tmp_date <= date_to){
+		nextdata.labels.push(tmp_date);
+		nextdata.datasets[0].data.push(mydata.datasets[0].data[i]);
+	    }
+	}
+    }
+  
+  var chart = new Chart(canvas, {
+
+  type: 'line',  //グラフの種類
+  data: nextdata,  //表示するデータ
+  options: options  //オプション設定
+  })
+
+  },false)
+},false)
   </script>
 </body>
 </html>
