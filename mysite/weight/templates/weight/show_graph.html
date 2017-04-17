@@ -27,7 +27,7 @@
 	{% endfor %}
 	],
     }
-  ]
+  ],
 };
 
 //「オプション設定」
@@ -60,15 +60,13 @@ document.addEventListener('DOMContentLoaded',function() {
 };
     var date_from= document.getElementById('date_from');
     date_from = new Date(date_from.value)
-    console.log("from:"+date_from)
     var date_to = document.getElementById('date_to');
     date_to = new Date(date_to.value)
-    console.log("to:"+date_to)
     for (var i=0;i<mydata.labels.length;i++){
 	var tmp_date = new Date(mydata.labels[i]);
 	if(tmp_date >= date_from){
 	    if(tmp_date <= date_to){
-		nextdata.labels.push(tmp_date);
+		nextdata.labels.push(dateFormat(tmp_date));
 		nextdata.datasets[0].data.push(mydata.datasets[0].data[i]);
 	    }
 	}
@@ -83,6 +81,15 @@ document.addEventListener('DOMContentLoaded',function() {
 
   },false)
 },false)
+
+
+function dateFormat(date){
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  var d = date.getDate();
+
+  return y+'/'+m+'/'+d;
+}
   </script>
 </body>
 </html>
